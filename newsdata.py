@@ -11,19 +11,21 @@ def clear_shell():
 config = json.loads(open("config.json", "r").read())
 
 conn = psycopg2.connect(
-    "dbname="+config["database"]+" user="+config["username"]+" password="+config["password"])
+    "dbname="+config["database"]+\
+    " user="+config["username"]+\
+    " password="+config["password"])
 cursor = conn.cursor()
 
 
 queries = {
-	"articles": {
-    	"sql": "SELECT articles.title, count(*) AS views FROM articles INNER JOIN log ON log.path LIKE concat('%',articles.slug,'%') GROUP BY articles.title, log.path ORDER BY views DESC LIMIT 3", 
-    	"title": "What are the most popular articles?"
+    "articles": {
+        "sql": "SELECT articles.title, count(*) AS views FROM articles INNER JOIN log ON log.path LIKE concat('%',articles.slug,'%') WHERE log.status='200 OK' GROUP BY articles.title, log.path ORDER BY views DESC LIMIT 3",
+        "title": "What are the most popular articles?"
     },
 
     "authors": {
-    	"sql": "SELECT authors.name, count(*) AS views FROM articles INNER JOIN authors ON articles.author = authors.id INNER JOIN log ON log.path LIKE concat('%',articles.slug,'%') GROUP BY authors.name ORDER BY views DESC",
-    	"title": "Who are the most popular articles authors of all time?"
+        "sql": "SELECT authors.name, count(*) AS views FROM articles INNER JOIN authors ON articles.author = authors.id INNER JOIN log ON log.path LIKE concat('%',articles.slug,'%') WHERE log.status='200 OK' GROUP BY authors.name ORDER BY views DESC",
+        "title": "Who are the most popular articles authors of all time?"
     },
 
 }
