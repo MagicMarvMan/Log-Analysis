@@ -6,7 +6,7 @@ import db
 def clear_shell():
 	os.system("clear")
 
-conn = psycopg2.connect("dbname=news")
+conn = psycopg2.connect("dbname=news user=postgres password=postgres")
 cursor = conn.cursor()
 
 
@@ -25,8 +25,7 @@ log = db.query("",cursor)
 clear_shell()
 
 def print_query(query):
-	for x in query:
-		print(x[0])
+	print(query)
 
 clear_shell()
 
