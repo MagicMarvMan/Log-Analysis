@@ -1,6 +1,7 @@
 import psycopg2
 import time
 import os
+import db
 
 def clear_shell():
 	os.system("clear")
@@ -10,18 +11,15 @@ cursor = conn.cursor()
 
 
 print("Querying authors...")
-cur.execute("")
-authors = cur.fetchall()
+authors = db.query("",cursor)
 clear_shell()
 
 
 print("Querying articles...")
-cur.execute("")
-articles = cur.fetchall()
+articles = db.query("",cursor)
 clear_shell()
 
 
 print("Querying log...")
-cur.execute("")
-log = cur.fetchall()
+log = db.query("",cursor)
 clear_shell()
