@@ -20,7 +20,7 @@ def execute_visual_query(name):
 	print(queries[name]["title"])
 	print("==========================================")
 	print(" ")
-	for x in db.query(queries[name]["sql"]):
+	for x in db.query(queries[name]["sql"],cursor):
 		print(str(x[0]+" - "+x[1]))
 
 
