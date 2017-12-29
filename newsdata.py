@@ -26,7 +26,7 @@ clear_shell()
 
 def print_query(query):
 	for x in query:
-		print(x[0]+" - "+x[1])
+		print(str(x[0])+" - "+str(x[1]))
 
 clear_shell()
 
