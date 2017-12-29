@@ -29,7 +29,7 @@ def execute_visual_query(name):
 	print(queries[name]["title"])
 	print("==========================================")
 	print(" ")
-	for x in :
+	for x in que:
 		print(str(x[0])+" - "+str(x[1]))
 
 
