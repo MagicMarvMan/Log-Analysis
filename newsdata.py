@@ -23,3 +23,11 @@ clear_shell()
 print("Querying log...")
 log = db.query("",cursor)
 clear_shell()
+
+def print_query(query):
+	for x in query:
+		print(x[0])
+
+clear_shell()
+
+print_query(articles)
