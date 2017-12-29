@@ -16,7 +16,7 @@ clear_shell()
 
 
 print("Querying articles...")
-articles = db.query("",cursor)
+articles = db.query("SELECT articles.title, count(*) AS views FROM articles INNER JOIN log ON log.path LIKE concat('%',articles.slug,'%') GROUP BY articles.title, log.path ORDER BY views DESC LIMIT 3",cursor)
 clear_shell()
 
 
