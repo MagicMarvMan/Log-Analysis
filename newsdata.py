@@ -4,7 +4,8 @@ import os
 import db
 
 def clear_shell():
-	os.system("clear")
+	for x in range(10):
+		print(" ")
 
 conn = psycopg2.connect("dbname=news user=postgres password=postgres")
 cursor = conn.cursor()
