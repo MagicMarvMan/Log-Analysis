@@ -24,6 +24,8 @@ print("Querying log...")
 log = db.query("",cursor)
 clear_shell()
 
+clear_shell()
+
 def print_query(query):
 	for x in query:
 		print(str(x[0])+" - "+str(x[1]))
