@@ -10,26 +10,20 @@ conn = psycopg2.connect("dbname=news user=postgres password=postgres")
 cursor = conn.cursor()
 
 
-print("Querying authors...")
-authors = db.query("",cursor)
-clear_shell()
+queries = {"articles":{"sql":"SELECT articles.title, count(*) AS views FROM articles INNER JOIN log ON log.path LIKE concat('%',articles.slug,'%') GROUP BY articles.title, log.path ORDER BY views DESC LIMIT 3","title":"What are the most popular articles?"}}
 
 
-print("Querying articles...")
-articles = db.query("SELECT articles.title, count(*) AS views FROM articles INNER JOIN log ON log.path LIKE concat('%',articles.slug,'%') GROUP BY articles.title, log.path ORDER BY views DESC LIMIT 3",cursor)
-clear_shell()
+def execute_visual_query(name):
+	print(" ")
+	print(" ")
+	print("==========================================")
+	print(queries[name]["title"])
+	print("==========================================")
+	print(" ")
+	for x in db.query(queries[name]["sql"]):
+		print(str(x[0]+" - "+x[1]))
 
-
-print("Querying log...")
-log = db.query("",cursor)
-clear_shell()
-
-clear_shell()
-
-def print_query(query):
-	for x in query:
-		print(str(x[0])+" - "+str(x[1]))
 
 clear_shell()
 
-print_query(articles)
+execute_visual_query("articles")
