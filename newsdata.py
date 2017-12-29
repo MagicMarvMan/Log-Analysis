@@ -20,8 +20,17 @@ def execute_visual_query(name):
 	print(queries[name]["title"])
 	print("==========================================")
 	print(" ")
-	for x in db.query(queries[name]["sql"],cursor):
-		print(str(x[0]+" - "+x[1]))
+	print("Loading...")
+	que = db.query(queries[name]["sql"],cursor)
+	clear_shell()
+	print(" ")
+	print(" ")
+	print("==========================================")
+	print(queries[name]["title"])
+	print("==========================================")
+	print(" ")
+	for x in :
+		print(str(x[0])+" - "+str(x[1]))
 
 
 clear_shell()
