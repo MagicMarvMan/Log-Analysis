@@ -24,7 +24,7 @@ queries = {
         " WHERE log.status='200 OK'"
         " GROUP BY articles.title, log.path"
         " ORDER BY views DESC LIMIT 3",
-        "title": "What are the most popular articles?"
+        "title": "1. What are the most popular three articles of all time?"
     },
 
     "authors": {
@@ -33,18 +33,18 @@ queries = {
         " INNER JOIN log ON log.path LIKE concat('%',articles.slug,'%')"
         " WHERE log.status='200 OK' GROUP BY authors.name "
         "ORDER BY views DESC",
-        "title": "Who are the most popular articles authors of all time?"
+        "title": "2. Who are the most popular article authors of all time?"
     },
 
     "errors": {
-    	"sql": "SELECT day, perc FROM"\
-    	" (SELECT day, round((sum(requests)/(SELECT count(*)"\
-    	" FROM log WHERE substring(cast(log.time AS text),0,11)"\
-    	" = day)*100),2) AS perc FROM (SELECT substring"\
-    	"(cast(log.time AS text),0,11) AS day, count(*) AS requests"\
-    	" FROM log WHERE status != '200 OK' GROUP BY day) AS lp"\
-    	" GROUP BY day ORDER BY perc DESC) AS final WHERE perc >= 1",
-    	"title": "Error"
+        "sql": "SELECT day, perc FROM"
+        " (SELECT day, round((sum(requests)/(SELECT count(*)"
+        " FROM log WHERE substring(cast(log.time AS text),0,11)"
+        " = day)*100),2) AS perc FROM (SELECT substring"
+        "(cast(log.time AS text),0,11) AS day, count(*) AS requests"
+        " FROM log WHERE status != '200 OK' GROUP BY day) AS lp"
+        " GROUP BY day ORDER BY perc DESC) AS final WHERE perc >= 1",
+        "title": "3. On which days did more than 1% of requests lead to errors?"
     }
 
 }
