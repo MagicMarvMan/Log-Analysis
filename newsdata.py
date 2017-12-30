@@ -62,3 +62,4 @@ def execute_visual_query(name):
 
 execute_visual_query("articles")
 execute_visual_query("authors")
+execute_visual_query("errors")
