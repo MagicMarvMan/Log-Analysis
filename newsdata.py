@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import psycopg2
 import time
 import os
@@ -44,7 +46,8 @@ queries = {
         "(cast(log.time AS text),0,11) AS day, count(*) AS requests"
         " FROM log WHERE status != '200 OK' GROUP BY day) AS lp"
         " GROUP BY day ORDER BY perc DESC) AS final WHERE perc >= 1",
-        "title": "3. On which days did more than 1% of requests lead to errors?"
+        "title": "3. On which days did more than 1% of "
+        "requests lead to errors?"
     }
 
 }
