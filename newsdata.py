@@ -55,6 +55,16 @@ queries = {
 clear_shell()
 
 
+def get_value_with_suffix(name,val):
+    if(name == "errors"):
+        return(str(val)+"%")
+    elif(name == "articles"):
+        return(str(val)+" views")
+    elif(name == "authors"):
+        return(str(val)+" views")
+    else:
+        return(str(val))
+
 def execute_visual_query(name):
     print("Loading "+str(name)+"...")
     que = db.query(queries[name]["sql"], cursor)
@@ -65,7 +75,7 @@ def execute_visual_query(name):
     print("==========================================")
     print(" ")
     for x in que:
-        print(str(x[0])+" - "+str(x[1]))
+        print(str(x[0])+" - "+str(get_value_with_suffix(name,x[1])))
     print(" ")
 
 
