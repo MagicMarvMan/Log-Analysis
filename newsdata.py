@@ -36,6 +36,11 @@ queries = {
         "title": "Who are the most popular articles authors of all time?"
     },
 
+    "errors": {
+    	"sql": "SELECT day, perc FROM (SELECT day, round((sum(requests)/(SELECT count(*) FROM log WHERE substring(cast(log.time AS test),0,11) = day)*100),2) AS percent FROM (SELECT substring(cast(log.time AS test),0,11) AS day, count(*) AS requests FROM log WHERE status != '200 OK' GROUP BY day) AS lp GROUP BY day ORDER BY percent DESC) AS final WHERE percent >= 1",
+    	"title": "Error"
+    }
+
 }
 
 clear_shell()
