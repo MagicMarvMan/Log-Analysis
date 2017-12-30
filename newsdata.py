@@ -37,7 +37,13 @@ queries = {
     },
 
     "errors": {
-    	"sql": "SELECT day, perc FROM (SELECT day, round((sum(requests)/(SELECT count(*) FROM log WHERE substring(cast(log.time AS text),0,11) = day)*100),2) AS perc FROM (SELECT substring(cast(log.time AS text),0,11) AS day, count(*) AS requests FROM log WHERE status != '200 OK' GROUP BY day) AS lp GROUP BY day ORDER BY perc DESC) AS final WHERE perc >= 1",
+    	"sql": "SELECT day, perc FROM"\
+    	" (SELECT day, round((sum(requests)/(SELECT count(*)"\
+    	" FROM log WHERE substring(cast(log.time AS text),0,11)"\
+    	" = day)*100),2) AS perc FROM (SELECT substring"\
+    	"(cast(log.time AS text),0,11) AS day, count(*) AS requests"\
+    	" FROM log WHERE status != '200 OK' GROUP BY day) AS lp"\
+    	" GROUP BY day ORDER BY perc DESC) AS final WHERE perc >= 1",
     	"title": "Error"
     }
 
